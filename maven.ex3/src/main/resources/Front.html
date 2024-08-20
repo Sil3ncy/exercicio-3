@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+
+<title>Controle de Estoque</title>
+</head>
+
+<script type="text/javascript">
+function confirmarDeleteProduto(id, descricao, preco) {  
+    if (confirm('Confirmar a exclusão do produto [' + descricao + '] (ID ' + id + ') com preço R$ ' + preco)) {  
+        location.href = '/produto/delete/' + id;
+    }
+}
+function onLoad() {
+    if(document.getElementById("msg").value != ""){
+      alert(document.getElementById("msg").value);
+    }
+}
+</script>
+
+<body onload="onLoad()">
+    <h1>Controle de Estoque</h1>
+    <input id="msg" name="msg" value="">
+    <br>
+
+    <!-- Inputs para cadastro de produto -->
+    <form method="post" action="/produto/cadastrar">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" class="input--main__style" required>
+        
+        <label for="preco">Preço:</label>
+        <input type="number" step="0.01" id="preco" name="preco" class="input--main__style" required>
+        
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" class="input--main__style" required>
+        
+        <input type="submit" value="Cadastrar" class="input--button">
+    </form>
+
+    <!-- Inputs para procurar e remover produto via ID -->
+    <form method="get" action="/produto/procurar">
+        <label for="procurarId">Procurar Produto (ID):</label>
+        <input type="number" id="procurarId" name="procurarId" class="input--main__style" required>
+        <input type="submit" value="Procurar" class="input--button">
+    </form>
+    
+    <form method="post" action="/produto/delete">
+        <label for="removerId">Remover Produto (ID):</label>
+        <input type="number" id="removerId" name="removerId" class="input--main__style" required>
+        <input type="submit" value="Excluir" class="input--button" onclick="return confirm('Confirmar a exclusão do produto ID ' + document.getElementById('removerId').value + '?');">
+    </form>
+
+    <!-- Botão para mostrar todos os produtos -->
+    <form method="get" action="/produto/listar">
+        <input type="submit" value="Mostrar Todos os Produtos" class="input--button">
+    </form>
+    
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(238, 220, 161);
+}
+
+.input--main__style {
+    background-color: #ffffff;
+}
+
+.input--button {
+    font-weight: bold;
+    font-family: Arial;
+    font-size: medium;
+    border-color: transparent;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    color: rgb(255, 3, 3);
+}
+
+input {
+    display: block;
+    border-radius: 7px;
+    padding: 10px;
+    border-style: solid;
+    border-color: rgb(255, 254, 254);
+    color: black;
+    margin-bottom: 10px;
+}
+
+label {
+    font-family: Arial, sans-serif;
+    font-size: medium;
+    color: black;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+    </style>
+</body>
+</html>
