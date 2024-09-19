@@ -19,7 +19,7 @@ public class Aplicacao {
         
         get("/produto/list/:orderby", (request, response) -> produtoService.getAll(request, response));
 
-        get("/produto/update/:id", (request, response) -> produtoService.getToUpdate(request, response));
+        get("/produto/update/:id", (request, response) -> produtoService.update(request, response));
         
         post("/produto/update/:id", (request, response) -> produtoService.update(request, response));
            

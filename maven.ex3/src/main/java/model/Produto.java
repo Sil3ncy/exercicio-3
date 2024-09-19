@@ -42,8 +42,8 @@ public class Produto {
 		return preco;
 	}
 
-	public void setPreco(float preco) {
-		this.preco = preco;
+	public void setPreco(double novoPreco) {
+		this.preco = (float) novoPreco;
 	}
 
 	public int getQuantidade() {
